@@ -1,153 +1,356 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" class="transition duration-500">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animated Slider</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,900;1,100;1,400&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fadhlan's Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Portfolio Fadhlan Izzatur Rahman, Web Developer & Creative Thinker dengan proyek unggulan dan kontak profesional." />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#00bfa6',
+            secondary: '#e0f7fa',
+            darkbg: '#0f172a',
+            lightbg: '#f1f5f9'
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+    .fade-section { opacity: 0; transform: translateY(50px); transition: opacity 1s ease, transform 1s ease; }
+    .fade-section.visible { opacity: 1; transform: translateY(0); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  </style>
 </head>
+<body class="bg-darkbg text-white dark:bg-lightbg dark:text-black transition-colors duration-500">
+  <button id="modeToggle" class="fixed top-4 right-4 z-50 bg-primary text-white p-2 rounded-full shadow-lg hover:bg-cyan-600 transition">
+    <span id="modeIcon">🌙</span><span class="sr-only">Toggle dark mode</span>
+  </button>
 
-<body>
-    <header>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </nav>
-    </header>
-    <div class="slider">
-        <div class="list">
-            <div class="item">
-                <img src="img/1.jpg" alt="Yone">
-                <div class="detail">
-                    <div class="title">League of Legend</div>
-                    <div class="name">Yone</div>
-                    <figure>
-                        <img src="img/avatar/1.png" alt="Assasin">
-                        <figcaption>Chase / Blink / Burst</figcaption>
-                    </figure>
-                    <div class="desc">In life, he was Yone—half-brother of Yasuo, and renowned student of his village’s
-                        sword school. But upon his death at the hands of his brother, he found himself hunted by a
-                        malevolent entity of the spirit realm, and was forced to slay it with its own sword. Now, cursed
-                        to wear its demonic mask upon his face, Yone tirelessly hunts all such creatures in order to
-                        understand what he has become.</div>
-                    <a href="#" class="more">More Details &raquo;</a>
-                </div>
-            </div>
-            <div class="item">
-                <img src="img/2.jpg" alt="Jhin">
-                <div class="detail">
-                    <div class="title">League of Legend</div>
-                    <div class="name">Jhin</div>
-                    <figure>
-                        <img src="img/avatar/2.png" alt="Marksman">
-                        <figcaption>ADC / Burst / Sniper</figcaption>
-                    </figure>
-                    <div class="desc">Jhin is a meticulous criminal psychopath who believes murder is art. Once an
-                        Ionian prisoner, but freed by shadowy elements within Ionia's ruling council, the
-                        serial killer now works as their cabal's assassin</div>
-                    <a href="#" class="more">More Details &raquo;</a>
-                </div>
-            </div>
-            <div class="item">
-                <img src="img/3.jpg" alt="Diana">
-                <div class="detail">
-                    <div class="title">League of Legend</div>
-                    <div class="name">Diana</div>
-                    <figure>
-                        <img src="img/avatar/3.png" alt="Fighter">
-                        <figcaption>Burst / Blink /Engage</figcaption>
-                    </figure>
-                    <div class="desc"> Diana fights as a warrior of the Lunari, a faith all but quashed in
-                        the lands around Mount Targon. Clad in shimmering armor the color of winter snow at night, she
-                        is a living embodiment of the silver moon's power.</div>
-                    <a href="#" class="more">More Details &raquo;</a>
-                </div>
-            </div>
-            <div class="item">
-                <img src="img/4.jpg" alt="Sylas">
-                <div class="detail">
-                    <div class="title">League of Legend</div>
-                    <div class="name">Sylas</div>
-                    <figure>
-                        <img src="img/avatar/4.png" alt="Mage">
-                        <figcaption>Mobility / Burst / Engage</figcaption>
-                    </figure>
-                    <div class="desc"> Having now broken free, Sylas lives as a hardened revolutionary, using the magic
-                        of those around him to destroy the kingdom he once served… and his band of outcast mage
-                        followers seems to grow by the day.</div>
-                    <a href="#" class="more">More Details &raquo;</a>
-                </div>
-            </div>
-            <div class="item">
-                <img src="img/5.jpg" alt="Thresh">
-                <div class="detail">
-                    <div class="title">League of Legend</div>
-                    <div class="name">Thresh</div>
-                    <figure>
-                        <img src="img/avatar/5.png" alt="Assasin">
-                        <figcaption>Initiator / Slow/ CC</figcaption>
-                    </figure>
-                    <div class="desc">Sadistic and cunning, Thresh is an ambitious and restless spirit of the Shadow
-                        Isles. Once the custodian of countless arcane secrets, he was undone by a power greater than
-                        life or death, and now sustains himself by tormenting and breaking others with slow,
-                        excruciating inventiveness</div>
-                    <a href="#" class="more">More Details &raquo;</a>
-                </div>
-            </div>
-        </div>
-        <div class="thumbnail">
-            <div class="item">
-                <img src="img/1.jpg" alt="Thumbnail 1">
-                <div class="detail">
-                    <div class="name">Yone</div>
-                    <blockquote>"May your spirit find the peace you did not."</blockquote>
-                </div>
-            </div>
-            <div class="item">
-                <img src="img/2.jpg" alt="Thumbnail 2">
-                <div class="detail">
-                    <div class="name">Jhin</div>
-                    <blockquote>"Behind every mask... is another mask."</blockquote>
-                </div>
-            </div>
-            <div class="item">
-                <img src="img/3.jpg" alt="Thumbnail 3">
-                <div class="detail">
-                    <div class="name">Diana</div>
-                    <blockquote>"The moon will rise. The night will last forever!"</blockquote>
-                </div>
-            </div>
-            <div class="item">
-                <img src="img/4.jpg" alt="Thumbnail 4">
-                <div class="detail">
-                    <div class="name">Sylas</div>
-                    <blockquote>"I am no traitor. I am the true Demacia."</blockquote>
-                </div>
-            </div>
-            <div class="item">
-                <img src="img/5.jpg" alt="Thumbnail 5">
-                <div class="detail">
-                    <div class="name">Thresh</div>
-                    <blockquote>"There is life. There is death. And then there is me."</blockquote>
-                </div>
-            </div>
-        </div>
+  <div id="galleryNav" class="fixed bottom-6 right-6 z-50 hidden space-x-4">
+    <button id="btnPrev" class="bg-primary text-white px-4 py-2 rounded-full shadow hover:bg-cyan-600 transition">← Sebelumnya</button>
+    <button id="btnNext" class="bg-primary text-white px-4 py-2 rounded-full shadow hover:bg-cyan-600 transition">Selanjutnya →</button>
+  </div>
 
-        <div class="arrows">
-            <button id="prev">&lt;</button>
-            <button id="next">&gt;</button>
-        </div>
-        <div class="loading-bar"></div>
+  <main>
+     <!-- Gallery Nav Buttons -->
+  <div id="galleryNav" class="fixed bottom-6 right-6 z-50 hidden space-x-4">
+    <button id="btnPrev" class="bg-primary text-white px-4 py-2 rounded-full shadow hover:bg-cyan-600 transition">← Sebelumnya</button>
+    <button id="btnNext" class="bg-primary text-white px-4 py-2 rounded-full shadow hover:bg-cyan-600 transition">Selanjutnya →</button>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="h-screen grid grid-cols-1 md:grid-cols-2 px-6 md:px-16 items-center fade-section">
+    <div class="space-y-6 text-center md:text-left">
+      <h1 class="text-4xl md:text-6xl font-bold">Fadhlan Izzatur Rahman</h1>
+      <p class="text-lg md:text-2xl">Creative Thinker</p>
+      <a href="#gallery" class="bg-primary text-white px-6 py-3 rounded-full hover:bg-cyan-600 transition inline-block">Lets Go!</a>
     </div>
-    <script src="script.js"></script>
-</body>
+    <div class="hidden md:flex justify-center">
+      <img src="pict/3.jpg" alt="Ilustrasi hero Fadhlan Izzatur Rahman" class="rounded-full border-4 border-primary shadow-lg" loading="lazy" />
+    </div>
+  </section>
 
+  <!-- About Section -->
+  <section id="about" class="py-20 px-6 md:px-16 bg-gray-900 dark:bg-white fade-section">
+    <div class="max-w-4xl mx-auto text-center">
+      <img src="pict/4.jpg" alt="Foto Profil Fadhlan Izzatur Rahman" class="mx-auto rounded-full border-4 border-primary shadow-lg mb-6" loading="lazy" />
+      <h2 class="text-3xl font-semibold mb-4">Tentang Saya</h2>
+      <p class="text-gray-300 dark:text-gray-700 max-w-2xl mx-auto">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi provident sit, omnis distinctio itaque sequi voluptas at. Fugiat, repudiandae similique ratione quaerat animi in possimus doloribus sed corporis odio aliquam.</p>
+    </div>
+  </section>
+
+  <!-- Project Section -->
+ <section id="gallery" class="min-h-screen bg-gray-900 text-white px-6 md:px-16 py-12 fade-section">
+  <h2 class="text-3xl font-bold text-center mb-8">Galeri Proyekku</h2>
+
+  <div class="relative w-full max-w-2xl mx-auto overflow-hidden">
+    <div id="slider" class="flex transition-transform duration-500 ease-in-out">
+      <!-- Slide 1 -->
+      <div class="min-w-full flex justify-center items-center px-4">
+        <div class="bg-gray-800 p-6 rounded-xl shadow-lg transform hover:scale-[1.03] hover:shadow-2xl transition-all duration-500 ease-in-out">
+          <img src="pict/1.jpg" alt="Project 1" class="rounded-lg mb-4" />
+          <p class="text-center font-semibold mb-2">Project 1</p>
+          <div class="bg-gray-700 text-sm p-3 rounded-md text-gray-200">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, saepe. Ut magnam similique eligendi amet earum quis, saepe harum reprehenderit alias tenetur eius sed ipsum nobis sint, ipsa nemo nostrum.
+          </div>
+        </div>
+      </div>
+      <!-- Slide 2 -->
+      <div class="min-w-full flex justify-center items-center px-4">
+        <div class="bg-gray-800 p-6 rounded-xl shadow-lg transform hover:scale-[1.03] hover:shadow-2xl transition-all duration-500 ease-in-out">
+          <img src="pict/2.jpg" alt="Project 2" class="rounded-lg mb-4" />
+          <p class="text-center font-semibold mb-2">Project 2</p>
+          <div class="bg-gray-700 text-sm p-3 rounded-md text-gray-200">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia, ullam facere doloribus cumque sequi excepturi quod assumenda sed quo non consequatur veritatis est enim vel quas repellat debitis nam dolorem?
+          </div>
+        </div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="min-w-full flex justify-center items-center px-4">
+        <div class="bg-gray-800 p-6 rounded-xl shadow-lg transform hover:scale-[1.03] hover:shadow-2xl transition-all duration-500 ease-in-out">
+          <img src="pict/1.jpg" alt="Project 3" class="rounded-lg mb-4" />
+          <p class="text-center font-semibold mb-2">Project 3</p>
+          <div class="bg-gray-700 text-sm p-3 rounded-md text-gray-200">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam libero temporibus, aliquam alias optio veniam praesentium! Aspernatur error dolorem ex esse! Numquam amet dolorum culpa natus accusamus delectus quod tenetur!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigasi -->
+    <div class="flex justify-between mt-6">
+      <button id="prevBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">←</button>
+      <button id="nextBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">→</button>
+    </div>
+
+    <!-- Dots -->
+    <div class="flex justify-center gap-2 mt-4" id="dots">
+      <span class="dot w-3 h-3 rounded-full bg-gray-500"></span>
+      <span class="dot w-3 h-3 rounded-full bg-gray-500"></span>
+      <span class="dot w-3 h-3 rounded-full bg-gray-500"></span>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 px-6 md:px-16 bg-gray-900 dark:bg-white fade-section">
+    <h2 class="text-3xl font-semibold text-center mb-12">Hubungi Saya</h2>
+    <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10">
+      <form id="contactForm" class="space-y-6" novalidate>
+        <input type="text" name="name" placeholder="Nama" class="w-full p-4 bg-gray-800 dark:bg-secondary rounded-xl text-white dark:text-black" required minlength="3" />
+        <input type="email" name="email" placeholder="Email" class="w-full p-4 bg-gray-800 dark:bg-secondary rounded-xl text-white dark:text-black" required />
+        <textarea name="message" rows="5" placeholder="Pesan" class="w-full p-4 bg-gray-800 dark:bg-secondary rounded-xl text-white dark:text-black" required minlength="10"></textarea>
+        <button type="submit" class="bg-primary text-white px-6 py-3 rounded-full hover:bg-cyan-600 transition w-full">Kirim</button>
+      </form>
+      <div class="text-gray-300 space-y-4">
+        <p class="text-center">Atau hubungi lewat</p>
+        <div class="flex items-center space-x-2">
+          <img src="https://img.icons8.com/ios-filled/24/ffffff/email.png"/>
+          <p>izzaturfadhlan@gmail.com</p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <img src="https://img.icons8.com/ios-filled/24/ffffff/linkedin.png"/>
+          <p>linkedin.com/in/fadhlan</p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <img src="https://img.icons8.com/ios-glyphs/24/ffffff/github.png"/>
+          <p><a href="https://ginko526.github.io/">Github</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer class="text-center py-6 text-gray-400 text-sm dark:text-gray-600">
+    © 2025 Fadhlan Izzatur Rahman. All rights reserved.
+  </footer>
+  
+
+  <script>
+    // Dark/Light Mode
+    const modeToggle = document.getElementById('modeToggle');
+    const modeIcon = document.getElementById('modeIcon');
+    const root = document.documentElement;
+
+    function setMode(dark) {
+      if (dark) {
+        root.classList.add('dark');
+        modeIcon.textContent = '☀️';
+        localStorage.setItem('mode', 'dark');
+      } else {
+        root.classList.remove('dark');
+        modeIcon.textContent = '🌙';
+        localStorage.setItem('mode', 'light');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedMode = localStorage.getItem('mode');
+      if (savedMode) {
+        setMode(savedMode === 'dark');
+      } else {
+        setMode(window.matchMedia('(prefers-color-scheme: dark)').matches);
+      }
+    });
+
+    modeToggle.addEventListener('click', () => {
+      setMode(!root.classList.contains('dark'));
+    });
+
+    
+    // Fade in sections 
+    const fadeSections = document.querySelectorAll('.fade-section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    fadeSections.forEach(section => observer.observe(section));
+
+    // GSAP Scroll Animation 
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.utils.toArray('#projectWrapper > div').forEach((project) => {
+        gsap.from(project, {
+          opacity: 0,
+          y: 50,
+          duration: 1,
+          scrollTrigger: {
+            trigger: project,
+            start: 'top 80%',
+            toggleActions: 'play none none none'
+          }
+        });
+      });
+    }
+
+    // Gallery Navigation
+   const slider = document.getElementById("slider");
+  const dots = document.querySelectorAll(".dot");
+  const slides = slider.children;
+  const totalSlides = slides.length;
+  let currentIndex = 0;
+  let isDragging = false;
+  let startX = 0;
+  let intervalId = null;
+  let isTransitioning = false;
+
+  function updateSlide() {
+    isTransitioning = true;
+    slider.style.transition = "transform 0.5s ease-in-out";
+    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("bg-blue-500", i === currentIndex);
+      dot.classList.toggle("bg-gray-500", i !== currentIndex);
+    });
+    setTimeout(() => isTransitioning = false, 500);
+  }
+
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    if (isTransitioning) return;
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlide();
+  });
+
+  document.getElementById("prevBtn").addEventListener("click", () => {
+    if (isTransitioning) return;
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateSlide();
+  });
+
+  slider.addEventListener("touchstart", (e) => {
+    isDragging = true;
+    startX = e.touches[0].clientX;
+  });
+
+  slider.addEventListener("touchend", (e) => {
+    if (!isDragging) return;
+    let endX = e.changedTouches[0].clientX;
+    let delta = endX - startX;
+    if (delta > 50) {
+      if (!isTransitioning) {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      }
+    } else if (delta < -50) {
+      if (!isTransitioning) {
+        currentIndex = (currentIndex + 1) % totalSlides;
+      }
+    }
+    updateSlide();
+    isDragging = false;
+  });
+
+  function startAutoPlay() {
+    intervalId = setInterval(() => {
+      if (!isTransitioning) {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateSlide();
+      }
+    }, 6000);
+  }
+
+  const gallerySection = document.getElementById("gallery");
+  gallerySection.addEventListener("mouseenter", () => clearInterval(intervalId));
+  gallerySection.addEventListener("mouseleave", startAutoPlay);
+
+  updateSlide();
+  startAutoPlay();
+
+  // Swipe support
+  slider.addEventListener("touchstart", (e) => {
+    isDragging = true;
+    startX = e.touches[0].clientX;
+  });
+
+  slider.addEventListener("touchend", (e) => {
+    if (!isDragging) return;
+    let endX = e.changedTouches[0].clientX;
+    let delta = endX - startX;
+    if (delta > 50) {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    } else if (delta < -50) {
+      currentIndex = (currentIndex + 1) % totalSlides;
+    }
+    updateSlide();
+    isDragging = false;
+  });
+
+  // Autoplay
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlide();
+  }, 5000); 
+  
+  updateSlide();
+
+
+    // Contact form handler 
+    const contactForm = document.getElementById('contactForm');
+    contactForm?.addEventListener('submit', e => {
+      e.preventDefault();
+      const formData = new FormData(contactForm);
+      const name = formData.get('name').trim();
+      const email = formData.get('email').trim();
+      const message = formData.get('message').trim();
+
+      if (name.length < 3) return alert('Nama harus minimal 3 karakter.');
+      if (!/\S+@\S+\.\S+/.test(email)) return alert('Email tidak valid.');
+      if (message.length < 10) return alert('Pesan harus minimal 10 karakter.');
+
+      fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        body: JSON.stringify({ name, email, message }),
+        headers: { 'Content-Type': 'application/json' }
+      })
+        .then(response => {
+          if (response.ok) {
+            alert('Pesan berhasil dikirim, terima kasih!');
+            contactForm.reset();
+          } else {
+            alert('Gagal mengirim pesan, coba lagi nanti.');
+          }
+        })
+        .catch(() => alert('Gagal mengirim pesan, cek koneksi internet Anda.'));
+    });
+  </script>
+  
+</body>
 </html>
